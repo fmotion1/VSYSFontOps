@@ -90,3 +90,5 @@ $RECYCLE.BIN/
 Ignore/
 00 Old Build/
 bin/
+python/
+src/
