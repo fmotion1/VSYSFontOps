@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/S2FVhO0QUfVXp8IDJ3gGDlAtS7ETFLvq1m9pum9Y9TTXcj7NCms27rKbPj8cxOio2wWRwbe9uw3nWgoMb485g==",
+  "success": true,
+  "projectFilePath": "D:\\Dev\\Powershell\\VSYSModules\\VSYSFontOps\\src\\VSYSFontOps\\VSYSFontOps.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\futur\\.nuget\\packages\\powershellstandard.library\\5.1.1\\powershellstandard.library.5.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

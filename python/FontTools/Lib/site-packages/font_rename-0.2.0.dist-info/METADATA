@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: font-rename
+Version: 0.2.0
+Summary: Renames fonts to their internal name and unpacks .ttc/.otc files.
+Home-page: https://github.com/whtsky/font-rename/
+License: MIT
+Author: Wu Haotian
+Author-email: whtsky@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: cchardet (>=2.1.7,<3.0.0)
+Requires-Dist: fonttools (>=4.16.0,<5.0.0)
+Project-URL: Repository, https://github.com/whtsky/font-rename/
+Description-Content-Type: text/markdown
+
+# font-rename
+
+Renames fonts to their internal name and unpacks .ttc/.otc files.
+
+```bash
+pip install font-rename
+font-rename insert/directory/file/path/here
+```
+
+## Changelog
+
+### v0.2.0
+
+- Add the option to remove unparsable fonts [#11](https://github.com/whtsky/font-rename/pull/11)
+- Add `.otc` support [#9](https://github.com/whtsky/font-rename/pull/9)
+- Fix invalid .ttc handling [#9](https://github.com/whtsky/font-rename/pull/9)
+
+### v0.1.0
+
+- Initial Release

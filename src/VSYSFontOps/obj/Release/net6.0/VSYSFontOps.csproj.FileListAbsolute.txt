@@ -1,0 +1,12 @@
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.csproj.AssemblyReference.cache
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.AssemblyInfoInputs.cache
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.AssemblyInfo.cs
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.csproj.CoreCompileInputs.cache
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\bin\Release\net6.0\VSYSFontOps.deps.json
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\bin\Release\net6.0\VSYSFontOps.dll
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\bin\Release\net6.0\VSYSFontOps.pdb
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.dll
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\refint\VSYSFontOps.dll
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.pdb
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\ref\VSYSFontOps.dll
