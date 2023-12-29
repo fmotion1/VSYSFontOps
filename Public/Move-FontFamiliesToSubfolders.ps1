@@ -65,48 +65,33 @@ function Move-FontFamiliesToSubfolders {
     end {
 
         $List | ForEach-Object -Parallel {
+            function ConvertToTitleCaseIfUpperCase($inputString) {
+                if($inputString -ceq $inputString.ToUpper()){
+                    $inputString = $inputString.ToLower()
+                    return (Get-Culture).TextInfo.ToTitleCase($inputString)
+                } else {
+                    return $inputString
+                }
+            }
 
-            # This is our font file
             $File = $_
-
-            # Storing the folder the font being processed resides within
             $FontBaseDirectory = [System.IO.Directory]::GetParent($File).FullName
 
-            # Font Family Name: Convert to TitleCase if the family name is all uppercase.
             [System.String]$FontFamilyName = & $Using:PythonCMD $Using:Script $File
             $FontFamilyName = Remove-InvalidFilenameCharacters $FontFamilyName
+            $NewFamilyName = ConvertToTitleCaseIfUpperCase $FontFamilyName
 
-            if($FontFamilyName -ceq $FontFamilyName.ToUpper()){
-                $FontFamilyName = $FontFamilyName.ToLower()
-                $NewFamilyName = (Get-Culture).TextInfo.ToTitleCase($FontFamilyName)
-            } else {
-                $NewFamilyName = $FontFamilyName
-            }
-
-            # Font Filename: Convert to TitleCase if the filename is all uppercase.
             $fontFileName = [System.IO.Path]::GetFileNameWithoutExtension($File)
-            if($fontFileName -ceq $fontFileName.ToUpper()){
-                $fontFileName = $fontFileName.ToLower()
-                $NewFileName = (Get-Culture).TextInfo.ToTitleCase($fontFileName)
-            } else {
-                $NewFileName = $fontFileName
-            }
+            $NewFileName = ConvertToTitleCaseIfUpperCase $fontFileName
 
-            # Convert extension to lowercase
-            $fontExtension = [System.IO.Path]::GetExtension($File)
-            $fontExtension = [System.IO.Path]::ChangeExtension($fontExtension, $fontExtension.ToLower())
-
-            # Construct path segments
+            $fontExtension = [System.IO.Path]::GetExtension($File).ToLower()
             $finalFileName = "$($NewFileName)$fontExtension"
             $FinalFile = [System.IO.Path]::Combine($FontBaseDirectory, $NewFamilyName, $finalFileName)
 
-            # Create the final directory to move the font to if it doesn't exist.
             $FinalDirectory = [System.IO.Directory]::GetParent($FinalFile)
             if(-not($FinalDirectory | Test-Path)){
                 New-Item $FinalDirectory -ItemType Directory -Force | Out-Null
             }
-            
-            # Move the damn file
             [IO.File]::Move($File, $FinalFile) | Out-Null
 
         } -ThrottleLimit $MaxThreads

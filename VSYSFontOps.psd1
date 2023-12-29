@@ -27,7 +27,8 @@
     RequiredAssemblies = @( "$PSScriptRoot\Lib\VSYSFontOps.dll" )
 
     FunctionsToExport = 'Move-FontFamiliesToSubfolders',
-                        'Group-FontsByWidth'
+                        'Group-FontsByWidth',
+                        'Test-IsFontVariable'
 
     PrivateData = @{
         PSData = @{
