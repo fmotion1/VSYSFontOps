@@ -10,3 +10,4 @@ D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSY
 D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\refint\VSYSFontOps.dll
 D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.pdb
 D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\ref\VSYSFontOps.dll
+D:\Dev\Powershell\VSYSModules\VSYSFontOps\src\VSYSFontOps\obj\Release\net6.0\VSYSFontOps.sourcelink.json
