@@ -49,14 +49,13 @@ function Move-FontFamiliesToSubfolders {
     process {
         try {
             foreach ($P in $Font) {
-                if	 ($P -is [String])   { $List.Add($P) }
-                elseif ($P.Path)		 { $List.Add($P.Path) }
-                elseif ($P.FullName)	 { $List.Add($P.FullName) }
-                elseif ($P.PSPath)		 { $List.Add($P.PSPath) }
+                if ($P -is [String]) { $List.Add($P) }
+                elseif ($P.Path) { $List.Add($P.Path) }
+                elseif ($P.FullName) { $List.Add($P.FullName) }
+                elseif ($P.PSPath) { $List.Add($P.PSPath) }
                 else { Write-Error "Invalid argument passed to files parameter."; return; }
             }
-        }
-        catch {
+        } catch {
             $Error[0] | Format-List * -Force
             $PSCmdlet.ThrowTerminatingError($PSItem)
         }
@@ -65,54 +64,54 @@ function Move-FontFamiliesToSubfolders {
     end {
 
         
-        Measure-Command {
+        
 
-            $List | ForEach-Object -Parallel {
+        $List | ForEach-Object -Parallel {
 
-                function ConvertToTitleCaseIfUpperCase($inputString) {
-                    if($inputString -ceq $inputString.ToUpper()){
-                        $inputString = $inputString.ToLower()
-                        return (Get-Culture).TextInfo.ToTitleCase($inputString)
-                    } else {
-                        return $inputString
-                    }
+            function ConvertToTitleCaseIfUpperCase($inputString) {
+                if ($inputString -ceq $inputString.ToUpper()) {
+                    $inputString = $inputString.ToLower()
+                    return (Get-Culture).TextInfo.ToTitleCase($inputString)
+                } else {
+                    return $inputString
                 }
+            }
 
-                $File = $_
-                $FontBaseDirectory = [System.IO.Directory]::GetParent($File).FullName
+            $File = $_
+            $FontBaseDirectory = [System.IO.Directory]::GetParent($File).FullName
 
-                [System.String]$FontFamilyName = & $Using:PythonCMD $Using:Script $File
-                $FontFamilyName = Remove-InvalidFilenameCharacters $FontFamilyName
-                $NewFamilyName = ConvertToTitleCaseIfUpperCase $FontFamilyName
+            [System.String]$FontFamilyName = & $Using:PythonCMD $Using:Script $File
+            $FontFamilyName = Remove-InvalidFilenameCharacters $FontFamilyName
+            $NewFamilyName = ConvertToTitleCaseIfUpperCase $FontFamilyName
 
-                $fontFileName = [System.IO.Path]::GetFileNameWithoutExtension($File)
-                $NewFileName = ConvertToTitleCaseIfUpperCase $fontFileName
+            $fontFileName = [System.IO.Path]::GetFileNameWithoutExtension($File)
+            $NewFileName = ConvertToTitleCaseIfUpperCase $fontFileName
 
-                $fontExtension = [System.IO.Path]::GetExtension($File).ToLower()
-                $finalFileName = "$($NewFileName)$fontExtension"
-                $FinalFile = [System.IO.Path]::Combine($FontBaseDirectory, $NewFamilyName, $finalFileName)
+            $fontExtension = [System.IO.Path]::GetExtension($File).ToLower()
+            $finalFileName = "$($NewFileName)$fontExtension"
+            $FinalFile = [System.IO.Path]::Combine($FontBaseDirectory, $NewFamilyName, $finalFileName)
 
-                $FinalDirectory = [System.IO.Directory]::GetParent($FinalFile)
-                if(-not($FinalDirectory | Test-Path)){
-                    New-Item $FinalDirectory -ItemType Directory -Force | Out-Null
-                }
+            $FinalDirectory = [System.IO.Directory]::GetParent($FinalFile)
+            if (-not($FinalDirectory | Test-Path)) {
+                New-Item $FinalDirectory -ItemType Directory -Force | Out-Null
+            }
 
-                try {
-                    [IO.File]::Move($File, $FinalFile)
-                } catch {
-                    Write-Error "Failed to move file: $_"
-                }
+            try {
+                [IO.File]::Move($File, $FinalFile)
+            } catch {
+                Write-Error "Failed to move file: $_"
+            }
 
-            } -ThrottleLimit MaxThreads
+        } -ThrottleLimit MaxThreads
 
-            Start-Sleep -Milliseconds 200
-            $wshell = New-Object -ComObject wscript.shell;
-            $wshell.SendKeys("{F5}")
-            Start-Sleep -Milliseconds 200
-            $wshell.SendKeys("{F5}")
+        Start-Sleep -Milliseconds 200
+        $wshell = New-Object -ComObject wscript.shell;
+        $wshell.SendKeys("{F5}")
+        Start-Sleep -Milliseconds 200
+        $wshell.SendKeys("{F5}")
 
-            & deactivate
-        }
+        & deactivate
+        
     }
 }
 
